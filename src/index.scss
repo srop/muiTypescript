@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+@font-face {
+  font-family: "DB Heaven";
+  src: local("DB Heaven"),
+    url("static/fonts/DBHeavent.ttf") format("truetype");
+  font-weight: 400;
+  font-size: 1.25rem;
+}
+$mainfont: DB Heaven !important;
+body ,html{
+  font-family: $mainfont;
+  font-size: 1.0rem !important;
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.MuiListItemText-root span{
+  font-family: $mainfont;
+  font-size: 1.30rem !important;
+}
+
+
+
