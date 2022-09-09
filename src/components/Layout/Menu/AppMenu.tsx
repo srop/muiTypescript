@@ -1,13 +1,12 @@
 import React from 'react'
-import { makeStyles, createStyles } from '@material-ui/core/styles'
 
-import List from '@material-ui/core/List'
+import List from '@mui/material/List'
 
-import IconDashboard from '@material-ui/icons/Dashboard'
-import IconShoppingCart from '@material-ui/icons/ShoppingCart'
-import IconPeople from '@material-ui/icons/People'
-import IconBarChart from '@material-ui/icons/BarChart'
-import IconLibraryBooks from '@material-ui/icons/LibraryBooks'
+import IconDashboard from '@mui/icons-material/Dashboard'
+import IconShoppingCart from '@mui/icons-material/ShoppingCart'
+import IconPeople from '@mui/icons-material/People'
+import IconBarChart from '@mui/icons-material/BarChart'
+import IconLibraryBooks from '@mui/icons-material/LibraryBooks'
 
 import AppMenuItem from './AppMenuItem'
 
@@ -55,10 +54,10 @@ const appMenuItems = [
 ]
 
 const AppMenu: React.FC = () => {
-  const classes = useStyles()
+ // const classes = makeStyles();
 
   return (
-    <List component="nav" className={classes.appMenu} disablePadding >
+    <List component="nav"  disablePadding >
       {appMenuItems.map((item, index) => (
         <AppMenuItem {...item} key={index} />
       ))}
@@ -67,23 +66,5 @@ const AppMenu: React.FC = () => {
 }
 
 const drawerWidth = 240
-
-const useStyles = makeStyles(theme =>
-  createStyles({
-    appMenu: {
-      width: '100%',
-    },
-    navList: {
-      width: drawerWidth,
-    },
-    menuItem: {
-      width: drawerWidth,
-    },
-    menuItemIcon: {
-      color: 'white',
-    },
-    
-  }),
-)
 
 export default AppMenu

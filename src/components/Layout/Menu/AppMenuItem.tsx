@@ -1,17 +1,17 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { makeStyles, createStyles } from '@material-ui/core/styles'
-// import { SvgIconProps } from '@material-ui/core/SvgIcon'
+import { makeStyles,createStyles } from '@mui/styles';
+// import { SvgIconProps } from '@mui/material/SvgIcon'
 
-import List from '@material-ui/core/List'
+import List from '@mui/material/List'
 
-import ListItemIcon from '@material-ui/core/ListItemIcon'
-import ListItemText from '@material-ui/core/ListItemText'
-import Divider from '@material-ui/core/Divider'
-import Collapse from '@material-ui/core/Collapse'
+import ListItemIcon from '@mui/material/ListItemIcon'
+import ListItemText from '@mui/material/ListItemText'
+import Divider from '@mui/material/Divider'
+import Collapse from '@mui/material/Collapse'
 
-import IconExpandLess from '@material-ui/icons/ExpandLess'
-import IconExpandMore from '@material-ui/icons/ExpandMore'
+import IconExpandLess from '@mui/icons-material/ExpandLess'
+import IconExpandMore from '@mui/icons-material/ExpandMore'
 
 import AppMenuItemComponent from './AppMenuItemComponent'
 
@@ -32,6 +32,30 @@ type AppMenuItemPropsWithoutItems = Omit<AppMenuItemPropTypes, 'items'>
 export type AppMenuItemProps = AppMenuItemPropsWithoutItems & {
   items?: AppMenuItemProps[]
 }
+const useStyles = makeStyles(theme =>
+  createStyles({
+    menuItem: {
+      '&.active': {
+        background: '#3D464D',
+        '& .MuiListItemIcon-root': {
+          color: '#fff',
+        },
+       
+      },
+      "&:hover": {
+        '& .MuiListItemIcon-root': {
+          // backgroundColor: "#009900 !important"
+        },
+        backgroundColor: "#3D464D !important"
+      },
+     
+    },
+    menuItemIcon: {
+      color: "#ffffff99 !important",
+      
+    },
+  }),
+)
 
 const AppMenuItem: React.FC<AppMenuItemProps> = props => {
   const { name, link, Icon, items = [] } = props
@@ -77,21 +101,5 @@ const AppMenuItem: React.FC<AppMenuItemProps> = props => {
   )
 }
 
-const useStyles = makeStyles(theme =>
-  createStyles({
-    menuItem: {
-      '&.active': {
-        background: '#e11b22',
-        '& .MuiListItemIcon-root': {
-          color: '#fff',
-        },
-      },
-     
-    },
-    menuItemIcon: {
-      color: '#fff',
-    },
-  }),
-)
 
 export default AppMenuItem

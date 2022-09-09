@@ -13,6 +13,10 @@ body ,html{
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 .MuiListItemText-root span{
   font-family: $mainfont;
