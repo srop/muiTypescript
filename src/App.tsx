@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route, } from "react-router-dom";
 import Notes from 'pages/Note'
 import Create from 'pages/Create'
 import Login from "pages/Login";
+import Orders from "pages/Orders";
 import './index.scss';
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 import { blue, red } from '@mui/material/colors'
@@ -69,8 +70,9 @@ function App() {
                   </PrivateRoute>
                 }
               />
-              {/* <Route path="/create" element={<Create />} /> */}
-              <Route path="/login" element={<Login />} />
+               <Route path="/create" element={<Create />} />
+               <Route path="/create" element={<Create />} />
+              <Route path="/orders" element={<Orders />} />
             </Routes>
           </Layout>
         </Router>

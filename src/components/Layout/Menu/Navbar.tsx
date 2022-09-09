@@ -2,16 +2,10 @@
 import { makeStyles } from '@mui/styles';
 import { useNavigate, useLocation } from "react-router-dom";
 import MuiDrawer from '@mui/material/Drawer';
-import List from '@mui/material/List';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
-import { AddCircleOutlineOutlined, SubjectOutlined, ExpandLess, ExpandMore } from '@mui/icons-material';
 import { useDrawerContext } from "context/drawer-context";
 import { styled, useTheme, Theme, CSSObject } from '@mui/material/styles';
 import useAuth from 'auth/useAuth';
@@ -77,9 +71,7 @@ const Navbar = (props) => {
     // const [menuIndex, setMenuIndex] = useState(-1);
     const { isOpened, toggleIsOpened } = useDrawerContext();
     const theme = useTheme();
-    const navigate = useNavigate();
-    const location = useLocation();
-    const classes = useStyles();
+
 
     const openedMixin = (theme: Theme): CSSObject => ({
         width: drawerWidth,
@@ -88,9 +80,9 @@ const Navbar = (props) => {
             duration: theme.transitions.duration.enteringScreen,
         }),
         overflowX: 'hidden',
-      //  backgroundColor: '#123985',
-      backgroundImage: "linear-gradient(90deg, rgba(18,57,133,1) 0%, rgba(52,95,180,1) 95%)",
-        color: "white",
+        backgroundColor: '#58666E ',
+     // backgroundImage: "linear-gradient(90deg, rgba(18,57,133,1) 0%, rgba(52,95,180,1) 95%)",
+        color: "#ffffff99",
         fontFamily: 'Quicksand'
     });
 
@@ -101,7 +93,8 @@ const Navbar = (props) => {
         }),
         overflowX: 'hidden',
         width: `calc(${theme.spacing(7)} + 1px)`,
-        backgroundImage: "linear-gradient(90deg, rgba(18,57,133,1) 0%, rgba(52,95,180,1) 95%)",
+        backgroundColor: '#58666E ',
+       // backgroundImage: "linear-gradient(90deg, rgba(18,57,133,1) 0%, rgba(52,95,180,1) 95%)",
         [theme.breakpoints.up('sm')]: {
             width: `calc(${theme.spacing(8)} + 1px)`,
         },
@@ -128,30 +121,7 @@ const Navbar = (props) => {
     ));
 
 
-    const menuItems = [
-        {
-            text: 'My Notes',
-            icon: <SubjectOutlined color="secondary" />,
-            path: '/'
-        },
-        {
-            text: 'Create Note',
-            icon: <AddCircleOutlineOutlined color="secondary" />,
-            path: '/create',
-            items: [
-                {
-                    text: "Technical Analysis",
-                    path: '/tech'
-                },
-                {
-                    text: "Fundamental Analysiss",
-                    path: '/fundamental'
-                },
-
-            ]
-        },
-    ];
-
+   
     const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(
         ({ theme, open }) => ({
             width: drawerWidth,
@@ -177,44 +147,18 @@ const Navbar = (props) => {
 
     return (
         <Drawer variant="permanent" open={isOpened} >
-            <DrawerHeader >
+            <DrawerHeader style = {{backgroundColor:"#1d84ecf7"}} >
                 <img src={logo} width={120} height="auto"></img>
                 <IconButton onClick={() => toggleIsOpened(!isOpened)}>
                     {theme.direction === 'rtl' ? <ChevronRightIcon style={{color:"white"}} /> : <ChevronLeftIcon  style={{color:"white"}} />}
                 </IconButton>
             </DrawerHeader>
             <Divider />
-
+{/* 
             <div>User:{JSON.stringify(auth?.user)}</div>
-            <button onClick={handleLogin}>Login</button>
+            <button onClick={handleLogin}>Login</button> */}
             <AppMenu />
-            {/* <List>
-                {menuItems.map((item) => (
-                    <ListItem
-                        button
-                        key={item.text}
-                        onClick={() => navigate(item.path)}
-                        disablePadding sx={{ display: 'block' }}
-                        className={location.pathname === item.path ? classes.active : ''}
-                    >
-                        <ListItemButton
-                            sx={{
-                                minHeight: 48,
-                                justifyContent: isOpened ? 'initial' : 'center',
-                                px: 2.5,
-                            }}
-                        >
-                            <ListItemIcon sx={{
-                                minWidth: 0,
-                                mr: isOpened ? 3 : 'auto',
-                                justifyContent: 'center',
-                            }}>{item.icon}</ListItemIcon>
-                            <ListItemText primary={item.text} sx={{ opacity: isOpened ? 1 : 0 }} />
-                        </ListItemButton>
-                    </ListItem>
-
-                ))}
-            </List> */}
+            
         </Drawer>
 
     );
