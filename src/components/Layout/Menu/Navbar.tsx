@@ -1,6 +1,4 @@
 
-import { makeStyles } from '@mui/styles';
-import { useNavigate, useLocation } from "react-router-dom";
 import MuiDrawer from '@mui/material/Drawer';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
@@ -15,58 +13,6 @@ import logo from 'static/images/NITMX-Logo-Reversed.png';
 import AppMenu from "./AppMenu";
 const drawerWidth = 240
 
-const useStyles = makeStyles((theme) => {
-    return {
-        page: {
-            background: '#f9f9f9',
-            width: '100%',
-            padding: theme.spacing(3),
-        },
-        root: {
-            display: 'flex',
-        },
-        drawer: {
-            width: drawerWidth,
-        },
-        drawerPaper: {
-            width: drawerWidth,
-        },
-        active: {
-            background: '#f4f4f4'
-        },
-        title: {
-            padding: theme.spacing(2),
-        },
-        appBar: {
-            width: `calc(100% - ${drawerWidth}px)`,
-            marginLeft: drawerWidth,
-        },
-        date: {
-            flexGrow: 1
-        },
-        item: {
-            display: 'flex',
-            paddingTop: 0,
-            paddingBottom: 0,
-        },
-        button: {
-            color: 'gray',
-            padding: '10px 8px',
-            justifyContent: 'flex-start',
-            textTransform: 'none',
-            letterSpacing: 0,
-            width: '100%',
-        },
-        btnRoot: {
-            paddingLeft: "25px",
-            justifyContent: "left !important"
-        },
-        subMenu: {
-            paddingLeft: "50px !important",
-        }
-        //   toolbar: theme.mixins.toolbar
-    }
-})
 const Navbar = (props) => {
     // const [menuIndex, setMenuIndex] = useState(-1);
     const { isOpened, toggleIsOpened } = useDrawerContext();

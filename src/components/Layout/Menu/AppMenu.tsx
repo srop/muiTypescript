@@ -13,7 +13,7 @@ import AppMenuItem from './AppMenuItem'
 const appMenuItems = [
   {
     name: 'Dashboard',
-    link: '/',
+    link: '/Dashboard',
     Icon: IconDashboard,
   },
   {
@@ -22,8 +22,8 @@ const appMenuItems = [
     Icon: IconShoppingCart,
   },
   {
-    name: 'Customers',
-    link: '/customers',
+    name: 'Employee',
+    link: '/Employee',
     Icon: IconPeople,
   },
   {
@@ -65,6 +65,5 @@ const AppMenu: React.FC = () => {
   )
 }
 
-const drawerWidth = 240
 
 export default AppMenu
