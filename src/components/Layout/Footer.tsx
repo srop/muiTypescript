@@ -12,6 +12,7 @@ const Footer = () => {
          zIndex: "100",
   //       position:"fixed",
          bottom:"0",
+         height:"25px"
   //       width:"100%",
   //       flex: "0 0 50px",/*or just height:50px;*/
   // marginTop: "auto"

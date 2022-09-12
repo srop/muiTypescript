@@ -1,26 +1,43 @@
 import { BrowserRouter as Router, Routes, Route, } from "react-router-dom";
 import Notes from 'pages/Note'
 import Create from 'pages/Create'
-import Login from "pages/Login";
+import Employee from "pages/Employee";
 import Orders from "pages/Orders";
 import './index.scss';
 import { createTheme, ThemeProvider } from '@mui/material/styles'
-import { blue, red } from '@mui/material/colors'
+import { blue, red, green, cyan, grey } from '@mui/material/colors'
 import Layout from "components/Layout/Layout";
 import AuthProvider from "auth/AuthProvider";
 import PrivateRoute from "auth/PrivateRoute";
-import { Note } from "@mui/icons-material";
+import { Home } from "pages/home";
 const theme = createTheme({
   palette: {
     primary: {
-      light: '#4b9fea',
-      main: blue[600],
+      light: blue[400],
+      main: blue[500],
+      dark: blue[600],
     },
     secondary: {
-      light: '#f6685e',
-      main: red[500],
+
+      main: grey[600],
+      dark: grey[700],
     },
+    info: {
+      main: cyan[500],
+      dark: cyan[600],
+      contrastText: '#fff',
+    },
+    error: {
+      main: red[500],
+      dark: red[600]
+    },
+    success: {
+      main: green.A700,
+      dark: green.A700,
+      contrastText: '#fff',
+    }
   },
+  
   typography: {
     fontFamily: [
       "Quicksand",
@@ -59,22 +76,24 @@ function App() {
         <Router>
           <Layout>
             <Routes>
-              {/* <Route path="/"  element ={<Notes />} /> */}
+             
 
-              <Route
+              {/* <Route
                 path="/"
                 element={
                   <PrivateRoute>
                     <Notes />
-                 
+
                   </PrivateRoute>
                 }
-              />
-               <Route path="/create" element={<Create />} />
-               <Route path="/create" element={<Create />} />
+              /> */}
+                <Route path="/Dashboard" element={<Orders />} />
+              <Route path="/create" element={<Create />} />
+              <Route path="/Employee" element={<Employee />} />
               <Route path="/orders" element={<Orders />} />
             </Routes>
           </Layout>
+          
         </Router>
       </ThemeProvider>
     </AuthProvider>

@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react'
-import { Grid, Paper, Container } from '@mui/material';
+import { useEffect, useState } from 'react'
+import { Grid,  Container } from '@mui/material';
 import NoteCard from '../components/NoteCard'
 interface INoteItem {
   id: number;

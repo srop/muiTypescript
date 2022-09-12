@@ -14,10 +14,7 @@ import Avatar from "@mui/material/Avatar";
 import Stack from "@mui/material/Stack";
 import Tooltip from "@mui/material/Tooltip";
 const useStyles = makeStyles(theme => ({
-  root: {
-    backgroundColor: 'red',
-
-  },
+ 
   searchInput: {
     opacity: '0.6',
     padding: `0px ${theme.spacing(1)}px`,
@@ -65,9 +62,10 @@ const Header = () => {
 
     <>
       <AppBar
-        position="static" className={classes.root}
+        position="fixed"
         isOpened={isOpened}
         style={{ backgroundColor: "#399BFF", color: "white" }}
+    
       >
         <Toolbar>
           <Grid container
@@ -97,12 +95,12 @@ const Header = () => {
             <Grid item sm></Grid>
             <Grid item style={{ display: "flex" }}>
               <IconButton >
-                <Badge badgeContent={4} color="secondary">
+                <Badge badgeContent={4} color="error">
                   <NotificationsNoneIcon fontSize="small" />
                 </Badge>
               </IconButton>
               <IconButton>
-                <Badge badgeContent={3} color="primary">
+                <Badge badgeContent={3} color="success">
                   <ChatBubbleOutlineIcon fontSize="small" />
                 </Badge>
               </IconButton>

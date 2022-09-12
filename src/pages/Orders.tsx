@@ -3,8 +3,19 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
 
+import CustomSnackbar from 'components/Common/CustomSnackbar';
+import CustomAlert from 'components/Common/CustomAlert';
 import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
+import CheckIcon from '@mui/icons-material/Check';
+import CustomDialog from 'components/Common/CustomDialog';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import Paper from '@mui/material/Paper';
+import Grid from '@mui/material/Unstable_Grid2';
+import Snackbar, { SnackbarOrigin } from '@mui/material/Snackbar';
+import CustomizedButtons from 'components/Common/CustomButton'
 interface TabPanelProps {
   children?: React.ReactNode;
   index: number;
@@ -37,13 +48,50 @@ function a11yProps(index: number) {
     'aria-controls': `simple-tabpanel-${index}`,
   };
 }
-
+export interface State extends SnackbarOrigin {
+  open: boolean;
+}
 export default function Orders() {
   const [value, setValue] = React.useState(0);
+  const [isOpen, setisOpen] = React.useState(false);
+  const [isAlertOpen, setIsAlertOpen] = React.useState(false);
 
+  const [state, setState] = React.useState<State>({
+    open: false,
+    vertical: 'top',
+    horizontal: 'center',
+  });
+  const { vertical, horizontal, open } = state;
+
+
+
+  const handleOpen = () => {
+    setisOpen(true);
+  };
+
+  const handleClose = () => {
+    setisOpen(false);
+  };
+  const handleConfirm = () => {
+    alert("You Agreed!");
+    handleClose();
+  };
+
+  // const openSnackbar = () => {
+  //   setIsAlertOpen(true)
+  // }
+  const handleSnackClose = () => {
+    setState({ ...state, open: false });
+  }
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
+
+  const handleClick = (newState: SnackbarOrigin) => () => {
+    setState({ open: true, ...newState });
+  };
+
+
   const columns: GridColDef[] = [
     { field: 'id', headerName: 'ID', width: 90 },
     {
@@ -75,7 +123,7 @@ export default function Orders() {
         `${params.row.firstName || ''} ${params.row.lastName || ''}`,
     },
   ];
-  
+
   const rows = [
     { id: 1, lastName: 'Snow', firstName: 'Jon', age: 35 },
     { id: 2, lastName: 'Lannister', firstName: 'Cersei', age: 42 },
@@ -87,49 +135,213 @@ export default function Orders() {
     { id: 8, lastName: 'Frances', firstName: 'Rossini', age: 36 },
     { id: 9, lastName: 'Roxie', firstName: 'Harvey', age: 65 },
   ];
-  
+
   return (
     <>
-    <Box sx={{ width: '100%' }} >
-      <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-        <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
-          <Tab label="Item One" {...a11yProps(0)} />
-          <Tab label="Item Two" {...a11yProps(1)} />
-          <Tab label="Item Three" {...a11yProps(2)} />
-        </Tabs>
+
+      <Box sx={{ flexGrow: 1, m: 4 }}>
+        <Grid container spacing={2}>
+          <Grid xs={6}>
+            <Card >
+              <Typography sx={{ m: 2 }} variant="h5" >Variant</Typography>
+              <CardContent>
+                <Button sx={{ m: 2 }} variant="contained" color="success">
+                  success
+                </Button>
+                <Button sx={{ m: 2 }} variant="contained" color="primary">
+                  primary
+                </Button>
+                <Button sx={{ m: 2 }} variant="contained" color="error">
+                  error
+                </Button>
+                <Button sx={{ m: 2 }} variant="contained" color="warning">
+                  warning
+                </Button>
+                <Button sx={{ m: 2 }} variant="contained" color="info">
+                  info
+                </Button>
+                <Button sx={{ m: 2 }} variant="contained" color="secondary">
+                  secondary
+                </Button>
+
+              </CardContent>
+            </Card>
+          </Grid>
+          <Grid xs={6}>
+
+            <Card >
+              <Typography sx={{ m: 2 }} variant="h5">outlined</Typography>
+              <CardContent>
+                <Button sx={{ m: 2 }} variant="outlined" color="success">
+                  success
+                </Button>
+                <Button sx={{ m: 2 }} variant="outlined" color="primary">
+                  primary
+                </Button>
+                <Button sx={{ m: 2 }} variant="outlined" color="error">
+                  error
+                </Button>
+                <Button sx={{ m: 2 }} variant="outlined" color="warning">
+                  warning
+                </Button>
+                <Button sx={{ m: 2 }} variant="outlined" color="info">
+                  info
+                </Button>
+                <Button sx={{ m: 2 }} variant="outlined" color="secondary">
+                  secondary
+                </Button>
+
+              </CardContent>
+            </Card>
+
+          </Grid>
+
+        </Grid>
       </Box>
-      <TabPanel value={value} index={0}>
-        Item One
-      </TabPanel>
-      <TabPanel value={value} index={1}>
-        Item Two
-      </TabPanel>
-      <TabPanel value={value} index={2}>
-        Item Three
-      </TabPanel>
-    </Box>
-    <Box sx={{ height: 400, width: '100%' }}>
-    <DataGrid
-      rows={rows}
-      columns={columns}
-      pageSize={5}
-      rowsPerPageOptions={[5]}
-      checkboxSelection
-      disableSelectionOnClick
-      experimentalFeatures={{ newEditingApi: true }}
-    />
-  </Box>
-  <Box sx={{ height: 400, width: '100%' }}>
-    <DataGrid
-      rows={rows}
-      columns={columns}
-      pageSize={5}
-      rowsPerPageOptions={[5]}
-      checkboxSelection
-      disableSelectionOnClick
-      experimentalFeatures={{ newEditingApi: true }}
-    />
-  </Box>
-  </>
+
+
+      <Box sx={{ flexGrow: 1, m: 4 }}>
+        <Grid container spacing={2}>
+          <Grid xs={6}>
+            <Card >
+              <Typography sx={{ m: 2 }} variant="h5" >CustomAlert filled </Typography>
+              <CardContent>
+                <CustomAlert severity="info" message='Info' variant='filled' />
+                <br></br>
+                <CustomAlert severity="success" message='Success' variant='filled' />
+                <br></br>
+                <CustomAlert severity="warning" message='Warning' variant='filled' />
+                <br></br>
+
+                <CustomAlert severity="error" message='Error' variant='filled' />
+                <br></br>
+
+
+              </CardContent>
+            </Card>
+          </Grid>
+          <Grid xs={6}>
+
+            <Card >
+              <Typography sx={{ m: 2 }} variant="h5" >CustomAlert Default </Typography>
+              <CardContent>
+                <CustomAlert severity="info" message='Info' />
+                <br></br>
+                <CustomAlert severity="success" message='Success' />
+                <br></br>
+                <CustomAlert severity="warning" message='Warning' />
+                <br></br>
+
+                <CustomAlert severity="error" message='Error' />
+                <br></br>
+
+
+              </CardContent>
+            </Card>
+
+          </Grid>
+
+        </Grid>
+      </Box>
+
+      <Box sx={{ flexGrow: 1, m: 4 }}>
+        <Grid container spacing={2}>
+          <Grid xs={6}>
+            <Card >
+              <Typography sx={{ m: 2 }} variant="h5" >Dialog message </Typography>
+
+              <Button sx={{ m: 2 }} variant="contained" color="primary" onClick={handleOpen}>
+                Show Dialog
+              </Button>
+
+
+              <CustomDialog title="confirmation" isOpen={isOpen} handleClose={handleClose}
+                children="Lorem Ipsum is simply dummy text of the printing and typesetting 
+        industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
+        when an unknown printer took a galley of type and scrambled "
+                fullWidth={true} handleConfirm={handleConfirm}
+                cancelText='Cancel' confirmText='Agree'
+              />
+            </Card>
+          </Grid>
+
+
+
+          <Grid xs={6}>
+            <Card >
+              <Typography sx={{ m: 2 }} variant="h5" >Notification message </Typography>
+              <CardContent>
+
+                <Button color="primary" variant="contained" sx={{ m: 2 }} onClick={handleClick({
+                  vertical: 'top',
+                  horizontal: 'right',
+                })} >Top - Right</Button>
+
+                <Button color="primary" variant="contained" sx={{ m: 2 }} onClick={handleClick({
+                  vertical: 'top',
+                  horizontal: 'left',
+                })} >Top - left</Button>
+                <Button color="primary" variant="contained" sx={{ m: 2 }} onClick={handleClick({
+                  vertical: 'top',
+                  horizontal: 'center',
+                })} >Top - center</Button>
+
+                <Button color="primary" variant="contained" sx={{ m: 2 }} onClick={handleClick({
+                  vertical: 'bottom',
+                  horizontal: 'right',
+                })} >Top - Right</Button>
+
+                <Button color="primary" variant="contained" sx={{ m: 2 }} onClick={handleClick({
+                  vertical: 'bottom',
+                  horizontal: 'left',
+                })} >Top - left</Button>
+                <Button color="primary" variant="contained" sx={{ m: 2 }} onClick={handleClick({
+                  vertical: 'bottom',
+                  horizontal: 'center',
+                })} >Top - center</Button>
+
+
+                <CustomSnackbar isOpen={open} handleClose={handleSnackClose} vertical={vertical}
+                  message="Lorem Ipsum is simply dummy text of the printing and typesetting" severity="success" horizontal={horizontal} />
+
+            
+
+              </CardContent>
+
+            </Card>
+          </Grid>
+
+
+        </Grid>
+      </Box>
+
+
+      <br></br>
+
+
+
+      <Box sx={{ height: 400, width: '100%' }}>
+        <DataGrid
+          rows={rows}
+          columns={columns}
+          pageSize={5}
+          rowsPerPageOptions={[5]}
+          checkboxSelection
+          disableSelectionOnClick
+          experimentalFeatures={{ newEditingApi: true }}
+        />
+      </Box>
+      <Box sx={{ height: 400, width: '100%' }}>
+        <DataGrid
+          rows={rows}
+          columns={columns}
+          pageSize={5}
+          rowsPerPageOptions={[5]}
+          checkboxSelection
+          disableSelectionOnClick
+          experimentalFeatures={{ newEditingApi: true }}
+        />
+      </Box>
+    </>
   );
 }
