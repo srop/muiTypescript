@@ -16,16 +16,14 @@ import IconExpandMore from '@mui/icons-material/ExpandMore'
 import AppMenuItemComponent from './AppMenuItemComponent'
 
 // React runtime PropTypes
-export const AppMenuItemPropTypes = {
+export const IAppMenuItemPropTypes = {
   name: PropTypes.string.isRequired,
   link: PropTypes.string,
   Icon: PropTypes.elementType,
   items: PropTypes.array,
 }
 
-// TypeScript compile-time props type, infered from propTypes
-// https://dev.to/busypeoples/notes-on-typescript-inferring-react-proptypes-1g88
-type AppMenuItemPropTypes = PropTypes.InferProps<typeof AppMenuItemPropTypes>
+type AppMenuItemPropTypes = PropTypes.InferProps<typeof IAppMenuItemPropTypes>
 type AppMenuItemPropsWithoutItems = Omit<AppMenuItemPropTypes, 'items'>
 
 // Improve child items declaration
@@ -44,7 +42,6 @@ const useStyles = makeStyles(theme =>
       },
       "&:hover": {
         '& .MuiListItemIcon-root': {
-          // backgroundColor: "#009900 !important"
         },
         backgroundColor: "#3D464D !important"
       },

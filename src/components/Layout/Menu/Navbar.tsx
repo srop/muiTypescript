@@ -7,8 +7,6 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { useDrawerContext } from "context/drawer-context";
 import { styled, useTheme, Theme, CSSObject } from '@mui/material/styles';
 import useAuth from 'auth/useAuth';
-import React, { useState, forwardRef } from 'react';
-import { NavLink as RouterLink } from 'react-router-dom';
 import logo from 'static/images/NITMX-Logo-Reversed.png';
 import AppMenu from "./AppMenu";
 const drawerWidth = 240
@@ -53,18 +51,6 @@ const Navbar = (props) => {
         // necessary for content to be below app bar
         ...theme.mixins.toolbar,
     }));
-
-    const [menu, setMenu] = useState({});
-    const { className, ...rest } = props;
-    const handleClick = (item) => {
-        let newData = { ...menu, [item]: !menu[item] };
-        setMenu(newData);
-    }
-    const CustomRouterLink = forwardRef((props, ref) => (
-        <div style={{ flexGrow: 1 }}>
-            <RouterLink to={''} {...props} />
-        </div>
-    ));
 
 
    

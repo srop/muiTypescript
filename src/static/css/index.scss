@@ -1,8 +1,9 @@
+@import "_colors";
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
 @font-face {
   font-family: "DB Heaven";
   src: local("DB Heaven"),
-    url("static/fonts/DBHeavent.ttf") format("truetype");
+    url("../fonts/DBHeavent.ttf") format("truetype");
   font-weight: 400;
   font-size: 1.25rem;
 }
@@ -23,5 +24,11 @@ body ,html{
   font-size: 1.30rem !important;
 }
 
-
+div.MuiTablePagination-toolbar{
+  background-color: "red";
+  width: 95% !important;
+}
+.a{
+  color: $blue-500 !important;
+}
 
