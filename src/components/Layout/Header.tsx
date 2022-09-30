@@ -9,30 +9,13 @@ import { useDrawerContext } from "context/drawer-context";
 import { styled } from "@mui/material/styles";
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
-import { makeStyles } from '@mui/styles';
 import Avatar from "@mui/material/Avatar";
 import Stack from "@mui/material/Stack";
 import Tooltip from "@mui/material/Tooltip";
-const useStyles = makeStyles(theme => ({
- 
-  searchInput: {
-    opacity: '0.6',
-    padding: `0px ${theme.spacing(1)}px`,
-    fontSize: '0.8rem',
-    '&:hover': {
-      backgroundColor: '#f2f2f2'
-    },
-    '& .MuiSvgIcon-root': {
-      marginRight: theme.spacing(1)
-    }
-  },
 
-
-}))
 
 const drawerWidth = 240;
 const Header = () => {
-  const classes = useStyles();
 
   const { isOpened, toggleIsOpened } = useDrawerContext();
 
@@ -85,13 +68,7 @@ const Header = () => {
             <Typography variant="h6" noWrap component="div">
               Mini variant drawer
             </Typography>
-            {/* <Grid item>
-            <InputBase
-              placeholder="Search topics"
-              className={classes.searchInput}
-              startAdornment={<SearchIcon fontSize="small" />}
-            />
-          </Grid> */}
+         
             <Grid item sm></Grid>
             <Grid item style={{ display: "flex" }}>
               <IconButton >

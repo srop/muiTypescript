@@ -1,15 +1,15 @@
 import { BrowserRouter as Router, Routes, Route, } from "react-router-dom";
-import Notes from 'pages/Note'
-import Create from 'pages/Create'
 import Employee from "pages/Employee";
 import Orders from "pages/Orders";
-import './index.scss';
+import Login from "public/login";
+import Error from "public/error";
+import Table from "pages/Table";
+
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 import { blue, red, green, cyan, grey } from '@mui/material/colors'
-import Layout from "components/Layout/Layout";
-import AuthProvider from "auth/AuthProvider";
-import PrivateRoute from "auth/PrivateRoute";
-import { Home } from "pages/home";
+import PrivateRoute from "components/Layout/Layout";
+import PublicLayout from "components/Layout/PublicLayout";
+import Level2 from "pages/multiLevel/level2";
 const theme = createTheme({
   palette: {
     primary: {
@@ -37,7 +37,7 @@ const theme = createTheme({
       contrastText: '#fff',
     }
   },
-  
+
   typography: {
     fontFamily: [
       "Quicksand",
@@ -71,32 +71,31 @@ declare module "@mui/private-theming" {
 }
 function App() {
   return (
-    <AuthProvider>
-      <ThemeProvider theme={theme}>
-        <Router>
-          <Layout>
-            <Routes>
-             
 
-              {/* <Route
-                path="/"
-                element={
-                  <PrivateRoute>
-                    <Notes />
+    <ThemeProvider theme={theme}>
+      <Router>
 
-                  </PrivateRoute>
-                }
-              /> */}
-                <Route path="/Dashboard" element={<Orders />} />
-              <Route path="/create" element={<Create />} />
-              <Route path="/Employee" element={<Employee />} />
-              <Route path="/orders" element={<Orders />} />
-            </Routes>
-          </Layout>
-          
-        </Router>
-      </ThemeProvider>
-    </AuthProvider>
+        <Routes>
+
+
+          <Route element={<PrivateRoute />}>
+            <Route element={<Orders />} path="/" />
+            <Route element={<Employee />} path="/Employee" />
+            <Route element={<Orders />} path="/orders" />
+            <Route element={<Table />} path="/table" />
+            <Route element={<Level2 />} path="/level2" />
+          </Route>
+          <Route element={<PublicLayout />}>
+            {/* <Route element={<Login />} path="/login" /> */}
+          </Route>
+          <Route element={<Error />} path="/error" />
+          <Route element={<Login />} path="/login" />
+        </Routes>
+
+
+      </Router>
+    </ThemeProvider>
+
   );
 }
 

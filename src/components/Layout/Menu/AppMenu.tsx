@@ -4,7 +4,6 @@ import List from '@mui/material/List'
 
 import IconDashboard from '@mui/icons-material/Dashboard'
 import IconShoppingCart from '@mui/icons-material/ShoppingCart'
-import IconPeople from '@mui/icons-material/People'
 import IconBarChart from '@mui/icons-material/BarChart'
 import IconLibraryBooks from '@mui/icons-material/LibraryBooks'
 
@@ -13,7 +12,7 @@ import AppMenuItem from './AppMenuItem'
 const appMenuItems = [
   {
     name: 'Dashboard',
-    link: '/Dashboard',
+    link: '/',
     Icon: IconDashboard,
   },
   {
@@ -21,36 +20,34 @@ const appMenuItems = [
     link: '/orders',
     Icon: IconShoppingCart,
   },
+ 
   {
-    name: 'Employee',
-    link: '/Employee',
-    Icon: IconPeople,
-  },
-  {
-    name: 'Reports',
-    link: '/reports',
+    name: 'Table',
+    link: '/table',
     Icon: IconBarChart,
   },
   {
-    name: 'Nested Pages',
+    name: 'Multi Level',
     Icon: IconLibraryBooks,
     items: [
       {
         name: 'Level 2',
+        link: '/level2',
       },
-      {
-        name: 'Level 2',
-        items: [
-          {
-            name: 'Level 3',
-          },
-          {
-            name: 'Level 3',
-          },
-        ],
-      },
+      // {
+      //   name: 'Level 2',
+      //   items: [
+      //     {
+      //       name: 'Level 3',
+      //     },
+      //     {
+      //       name: 'Level 3',
+      //     },
+      //   ],
+      // },
     ],
   },
+  
 ]
 
 const AppMenu: React.FC = () => {

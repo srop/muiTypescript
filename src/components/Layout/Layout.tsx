@@ -1,15 +1,13 @@
-import { ReactNode , useState, useEffect } from "react";
+import {  useState, useEffect } from "react";
 import Box from '@mui/material/Box';
 import { DrawerContextProvider } from "context/drawer-context";
-import Header from "components/Layout/Header";
-import Navbar from "components/Layout/Menu/Navbar";
-import Footer from "components/Layout/Footer";
+import Header from './Header';
+import Navbar from "./Menu/Navbar";
+import Footer from "./Footer";
 import { makeStyles } from '@mui/styles';
 import Typography from "@mui/material/Typography";
 import { useLocation } from 'react-router-dom';
-type Props = {
-  children: NonNullable<ReactNode>;
-};
+import { Outlet } from 'react-router-dom';
 
 const useStyles = makeStyles({
   page: {
@@ -44,13 +42,13 @@ const useStyles = makeStyles({
 
 })
 
-const Layout: React.FC<Props> = ({ children }) => {
+const Layout = (props: any) => {
   const classes = useStyles();
   const [title, setTitle]  = useState<string>('');
   const location = useLocation();
   
   useEffect(() => {
-    console.log(location)
+    
     const parsedTitle = location.pathname.replace(/\W/g, ' ');
     setTitle(parsedTitle);
   }, [location]);
@@ -78,7 +76,7 @@ const Layout: React.FC<Props> = ({ children }) => {
               {title}
             </Typography>
           </div>
-            {children}
+          {props.children ? props.children : <Outlet />}
 
           </div>
         </div>
