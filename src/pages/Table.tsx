@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import Card from '@mui/material/Card';
 //import MaterialTable, { Column } from "material-table";
 import CustomTable from 'components/Common/CustomTable';
 export default function Table() {
